@@ -38,6 +38,7 @@ public class AttackState : BaseState
                 enemy.Agent.SetDestination(enemy.transform.position + (Random.insideUnitSphere*5));
                 moveTimer = 0;
             }
+             enemy.LastKnowPos = enemy.Player.transform.position;
         }
         else//lost sight player
         {
@@ -45,7 +46,7 @@ public class AttackState : BaseState
             if (losePlayerTimer > Random.Range(3, 7))
             {
                 //Change the search state
-                stateMachine.ChangeState(new PatrolState());
+                 stateMachine.ChangeState(new SearchState());
             }
         }
     }
